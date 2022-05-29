@@ -1,7 +1,7 @@
    
-const mongoose = require("mongoose");
+const {Schema, model} = require("mongoose");
 
-const courseSchema = mongoose.Schema(
+const courseSchema = new Schema(
   {
     courseName: {
       type: String,
@@ -11,22 +11,26 @@ const courseSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-
-    courseThumbnail: {
-      type: String,
+    price : {
+      type: Number,
       required: true,
+      trim: true
     },
-
-    createdAt: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    material :[ {
+      type : Schema.Types.ObjectId,
+      ref : 'Material'
+    }],
+    admin : {
+      type : Schema.Types.ObjectId,
+      ref : 'Admin'
     },
-  },
-  {
-    timestamps: true,
+    revenue : {
+      type : Number,
+      required : false,
+      default : 0
+  }    
   }
 );
 
-const CourseModel = mongoose.model("Course", courseSchema);
-
+const CourseModel = model("Course", courseSchema);
 module.exports = CourseModel;
