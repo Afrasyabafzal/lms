@@ -1,7 +1,7 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { Dashboard } from '../containers/Dashboard'
 
-function SignIn() {
+function AdminSignIn() {
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -12,15 +12,8 @@ function SignIn() {
               src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
               alt="Workflow"
             />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to Your Learners account</h2>
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign into Administrative account</h2>
             <p className="mt-2 text-center text-sm text-gray-600">
-              Or{' '}
-              <a href="/signUp" className="font-medium text-indigo-600 hover:text-indigo-500">
-                sign up for a new account
-              </a>
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                sign up for a new account 
-              </a>
             </p>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
@@ -86,7 +79,7 @@ function SignIn() {
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
                 </span>
-                Sign in
+              Admin Sign in
               </button>
             </div>
           </form>
@@ -96,4 +89,4 @@ function SignIn() {
   )
 }
 
-export default SignIn;
+export default AdminSignIn;
