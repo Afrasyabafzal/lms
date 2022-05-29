@@ -10,7 +10,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
-        
         <Route path="/*" element={<Error404/>} />
       </Routes>
     </BrowserRouter>
