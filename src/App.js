@@ -1,3 +1,4 @@
+import CourseAdmin from './components/admincourses'
 import SignIn from './components/signIn'
 import Adduser from './components/adduser'
 import SignUp from './components/signUp'
@@ -12,11 +13,10 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SignIn />} />
-
+        <Route path="/adminC" element={<CourseAdmin />} />
         <Route path="/adduser" element={<Adduser />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/admin" element={<AdminSignIn />} />
-
         <Route path="/*" element={<Error404/>} />
       </Routes>
     </BrowserRouter>
