@@ -14,7 +14,8 @@ const { createToken } = require('../utils/createToken');
 
 module.exports = {
     signUp: catchAsync(async (req, res, next) => {
-        const newLearner = await Learner.create(...req.body);
+        console.log("USER", req.body);
+        const newLearner = await Learner.create({...req.body});
         createToken(newLearner)
         await newLearner.save();
         res.status(200).json({

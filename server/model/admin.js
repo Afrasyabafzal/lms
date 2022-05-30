@@ -32,11 +32,11 @@ const adminSchema = new Schema({
     },
     accessToken : {
         type: String,
-        required: true
+        required: false
     },
     refreshToken : {
         type: String,
-        required: true
+        required: false
     },
     course : [{
         type: Schema.Types.ObjectId,

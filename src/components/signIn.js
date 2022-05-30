@@ -18,9 +18,6 @@ function SignIn() {
               <a href="/signUp" className="font-medium text-indigo-600 hover:text-indigo-500">
                 sign up for a new account
               </a>
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                sign up for a new account 
-              </a>
             </p>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
@@ -72,8 +69,11 @@ function SignIn() {
               <div className="text-sm">
                 <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
                   Forgot your password?
-                </a>
-              </div>
+                </a> <br/>
+                <a href="/admin" className="font-medium text-indigo-600 hover:text-indigo-500">
+                Login as Admin
+              </a>
+              </div> 
             </div>
 
             <div>

@@ -6,6 +6,8 @@ import AdminSignIn from './components/AdminSignin'
 
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Error404 from './Error/error'
+import Navbar from './components/navbar'
+import Dashboard from './containers/Dashboard'
 
 export default function App() {
   return (
@@ -17,6 +19,7 @@ export default function App() {
         <Route path="/adduser" element={<Adduser />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/admin" element={<AdminSignIn />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/*" element={<Error404/>} />
       </Routes>
     </BrowserRouter>
