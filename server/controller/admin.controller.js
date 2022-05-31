@@ -36,8 +36,10 @@ module.exports = {
         });
     }),
     signOut: async (req, res, next) => {
+        console.log("req.body",req.body);
+        console.log("req.body",req.headers.authorization);
         const token = req.headers.authorization;
-        const foundAdmin = await Admin.fineOneAndUpdate({accesstoken: token}, {accesstoken: null});
+        const foundAdmin = await Admin.findOneAndUpdate({accesstoken: token}, {accesstoken: null});
         if(!foundAdmin) {
             return next(new AppError('Admin not found', 404));
         }
