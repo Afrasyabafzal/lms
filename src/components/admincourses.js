@@ -1,4 +1,4 @@
-import Navbar from './navbar';
+import Navbar from './learnerNavbar';
 const course = [
     { coursename: 'Programming Fundamental', coursecode: 'CS124', credithours: '3', enrollment: 'Active' },
     

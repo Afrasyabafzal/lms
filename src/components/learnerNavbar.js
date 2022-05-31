@@ -1,31 +1,40 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
+import { learnerSignOut } from '../redux/action/learner.action'
+import { useNavigate } from 'react-router-dom'
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
+
+
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'All Courses', href: '#', current: false },
+  { name: 'My Courses', href: '#', current: false },
   { name: 'Reports', href: '#', current: false },
 ]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-function Navbar() {
+const Navbar = (props) =>{
+  const navigate = useNavigate()
+  console.log("props",props);
+  const user = props.learner ? props.learner : null;
+  console.log('user',user)
+  const handleSignout = (e) => {
+    e.preventDefault();
+    props.learnerSignOut(navigate);
+    props.stateChange(null);
+    console.log("SIGNOUT")
+  }
+  const userNavigation = [
+    { name: 'Your Profile', href: '#', onClick:handleSignout },
+    { name: 'Sign out', href: '#', onClick:handleSignout },
+  ]
   return (
     <>
       <div className="min-h-full">
@@ -77,7 +86,7 @@ function Navbar() {
                         <div>
                           <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <span className="sr-only">Open user menu</span>
-                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                            <p className="text-white">{user.name}</p>
                           </Menu.Button>
                         </div>
                         <Transition
@@ -94,10 +103,11 @@ function Navbar() {
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
                                   <a
-                                    href={item.href}
+                                    onClick={item.onClick}
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700'
+                                    
                                     )}
                                   >
                                     {item.name}
@@ -180,4 +190,9 @@ function Navbar() {
   )
 }
 
-export default Navbar;
+const mapStateToProps = (storeState) => {
+  return {
+    learner: storeState.learnerState.learner
+  }
+}
+export default connect(mapStateToProps, {learnerSignOut})(Navbar);

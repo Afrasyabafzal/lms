@@ -3,8 +3,10 @@ import { Dashboard } from '../containers/Dashboard'
 import { useState } from 'react'
 import { learnerSignUp } from '../redux/action/learner.action'
 import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = (props) => {
+  const navigate = useNavigate()
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -18,7 +20,7 @@ const SignUp = (props) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.learnerSignUp(user);
+    props.learnerSignUp(user,navigate);
     console.log("USER",user);
   }
   return (
@@ -32,12 +34,6 @@ const SignUp = (props) => {
               alt="Workflow"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign Up and Create a new Account</h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              Or{' '}
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                sign up for a new account
-              </a>
-            </p>
           </div>
           <div class="mt-10 sm:mt-0">
             <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -67,7 +63,7 @@ const SignUp = (props) => {
                       </div>
                     </div>
                     <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                      <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign Up</button>
+                      <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >Sign Up</button>
                     </div>
                   </div>
                 </form>

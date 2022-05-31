@@ -2,10 +2,11 @@ import { LEARNER_SIGN_IN,LEARNER_SIGN_UP,LEARNER_SIGN_OUT,IS_FETCHING,ERROR,GET_
 import { notification } from 'antd'
 import axios from 'axios'
 import { GET_ADMIN } from "../actionTypes/admin.actionType";
+import { useNavigate } from 'react-router-dom'
 
 const SERVER_BASE_URL ='http://localhost:4000'
 
-export const learnerSignUp = user => async dispatch => {
+export const learnerSignUp = (user, navigate) => async dispatch => {
     console.log("USER",user);
     try {
         const headers = {
@@ -21,13 +22,15 @@ export const learnerSignUp = user => async dispatch => {
             notification.success(
                 {message: "Signed Up Successfully"}
             )
-
+            navigate('/signIn')
+            
         }
         else if (data.status == 'fail') {
             notification.success({
                 message:"Error While signing up",
                 placement: "topRight",
             })
+            
         }
     }
     catch(error) {
@@ -45,12 +48,13 @@ export const learnerSignUp = user => async dispatch => {
     }
 }
 
-export const learnerSignIn = user => async dispatch => {
+export const learnerSignIn = (user,navigate) => async dispatch => {
     try {
         const headers = {
             'Content-Type': 'application/json'
         }
         const { data } = await axios.post(`${SERVER_BASE_URL}/learner/signIn`, user , {headers : headers})
+        console.log('data',data)
         dispatch({
             type: LEARNER_SIGN_IN,
             payload: data
@@ -59,6 +63,9 @@ export const learnerSignIn = user => async dispatch => {
             notification.success(
                 {message: "Signed In Successfully"}
             )
+            console.log('After noti data',data)
+            navigate('/Dashboard')
+            
         }
     }
     catch(error) {
@@ -75,13 +82,15 @@ export const learnerSignIn = user => async dispatch => {
     }
 }
 
-export const learnerSignOut = () => async (dispatch,getState) => {
+export const learnerSignOut = (navigate) => async (dispatch,getState) => {
+    console.log('learnerSignOut',getState().learnerState.learner)
     try {
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': getState().learnerState.learner.accessToken
             }
-        const { data } = await axios.delete(`${SERVER_BASE_URL}/learner/signOut`, {headers : headers})
+        const { data } = await axios.delete(`${SERVER_BASE_URL}/learner/signOut`, {headers})
+        console.log('data',data)
         dispatch({
             type: LEARNER_SIGN_OUT,
             payload: data
@@ -90,6 +99,7 @@ export const learnerSignOut = () => async (dispatch,getState) => {
             notification.success(
                 {message: "Signed Out Successfully"}
             )
+            navigate('/signIn')
         }else {
             notification.info({
                 message: 'Error While Signing Out'
@@ -101,6 +111,7 @@ export const learnerSignOut = () => async (dispatch,getState) => {
             notification.info({
                 message: error.response.data.message
             })
+            console.log('error',error.response.data.message)
         }
         else if(error.response.data.status == 'error') {
             notification.warning({ 

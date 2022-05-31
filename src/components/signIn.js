@@ -1,7 +1,29 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { Dashboard } from '../containers/Dashboard'
+import { useState } from 'react'
+import { connect } from 'react-redux'
+import { learnerSignIn } from '../redux/action/learner.action'
+import { useNavigate } from 'react-router-dom'
 
-function SignIn() {
+const SignIn = (props) => {
+  const navigate = useNavigate()
+  const [user, setUser] = useState({
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    });
+  }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.learnerSignIn(user,navigate);
+    console.log("USER",user);
+  }
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -20,7 +42,7 @@ function SignIn() {
               </a>
             </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form onSubmit={handleSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -28,13 +50,14 @@ function SignIn() {
                   Email address
                 </label>
                 <input
-                  id="email-address"
+                  id="email"
                   name="email"
                   type="email"
                   autoComplete="email"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -49,6 +72,7 @@ function SignIn() {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -96,4 +120,4 @@ function SignIn() {
   )
 }
 
-export default SignIn;
+export default connect(null, { learnerSignIn })(SignIn)

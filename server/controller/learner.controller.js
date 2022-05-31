@@ -40,7 +40,9 @@ module.exports = {
     }),
     signOut: catchAsync(async (req, res, next) => {
         const  Token  = req.headers.authorization;
-        const foundLearner = await Learner.findOneAndUpdate({ accessToken:Token }, { accessToken: NULL });
+        console.log("Token", Token);
+        const foundLearner = await Learner.findOneAndUpdate({ accessToken:Token }, { accessToken: null});
+        console.log("foundLearner", foundLearner);
         if(!foundLearner){ return next(new AppError('Learner not found', 404)) }
         return res.status(200).json({
             status: 'success',
