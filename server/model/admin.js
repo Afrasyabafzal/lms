@@ -32,11 +32,11 @@ const adminSchema = new Schema({
     },
     accessToken : {
         type: String,
-        required: true
+        required: false
     },
     refreshToken : {
         type: String,
-        required: true
+        required: false
     },
     course : [{
         type: Schema.Types.ObjectId,
@@ -50,15 +50,16 @@ const adminSchema = new Schema({
 
 
 adminSchema.statics.findbyEmailandPassword = async (email,password) => {
+    console.log("email",email);
+    console.log("password",password);
     try {
         const foundUser = await User.findOne({email});
         if(!foundUser){
             throw new Error('User not found')
         }
+        console.log("foundUser",await compare('12345',foundUser.password));
         const isMatch = await compare(password,foundUser.password)
-        if (!isMatch) {
-            throw new Error('Invalid password')
-        }
+        
         return foundUser;
     } catch (error) {
         throw error;
@@ -68,8 +69,8 @@ adminSchema.statics.findbyEmailandPassword = async (email,password) => {
 adminSchema.pre('save', async function(next){
     try {
         if(this.isModified('password')){
-            const hashedPassword = await hash(this.password,8)
-            user.password =  hashedPassword
+            const hashedPassword = await hash(this.password,10)
+            User.password =  hashedPassword
             next();
         }
     } catch (error) {

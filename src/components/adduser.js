@@ -71,10 +71,7 @@ const user = [
                     <a href="#" className="text-indigo-600 hover:text-indigo-900">
                       Edit<span className="sr-only">, {user.name}</span>
                     </a>
-  <a>                      <td>
-                      Delete<span className="sr-only">, {user.name}</span>
-                      </td>
-</a>
+                    <a><td>Delete<span className="sr-only">, {user.name}</span></td></a>
                   </td>
                 </tr>
               ))}
