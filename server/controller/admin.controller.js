@@ -12,6 +12,7 @@ const AppError = require('../utils/appError');
 module.exports = {
     signUp: catchAsync(async (req, res, next) => {
         const newAdmin = await Admin.create({...req.body});
+        console.log("newAdmin",newAdmin);
         createToken(newAdmin)
         await newAdmin.save();
         res.status(200).json({
@@ -22,8 +23,9 @@ module.exports = {
         });
     }),
     signIn: catchAsync(async (req, res, next) => {
+        console.log("req.body",req.body);
         const { email, password } = req.body;
-        const foundAdmin = await Admin.findByEmailAndPassword(email, password);
+        const foundAdmin = await Admin.findbyEmailandPassword(email, password);
         createToken(foundAdmin)
         foundAdmin.save();
         res.status(200).json({
@@ -34,8 +36,10 @@ module.exports = {
         });
     }),
     signOut: async (req, res, next) => {
+        console.log("req.body",req.body);
+        console.log("req.body",req.headers.authorization);
         const token = req.headers.authorization;
-        const foundAdmin = await Admin.fineOneAndUpdate({accesstoken: token}, {accesstoken: null});
+        const foundAdmin = await Admin.findOneAndUpdate({accesstoken: token}, {accesstoken: null});
         if(!foundAdmin) {
             return next(new AppError('Admin not found', 404));
         }

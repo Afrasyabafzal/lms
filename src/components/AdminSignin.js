@@ -1,7 +1,29 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { Dashboard } from '../containers/Dashboard'
+import { adminSignIn } from '../redux/action/admin.action'
+import { connect } from 'react-redux'
+import {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function AdminSignIn() {
+const AdminSignIn = (props) => {
+  const [user, setUser] = useState({
+    email: '',
+    password: ''
+  });
+  const navigate = useNavigate()
+
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.adminSignIn(user,navigate);
+    console.log("USER",user);
+  }
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -16,7 +38,7 @@ function AdminSignIn() {
             <p className="mt-2 text-center text-sm text-gray-600">
             </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -31,6 +53,7 @@ function AdminSignIn() {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -45,6 +68,7 @@ function AdminSignIn() {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -89,4 +113,4 @@ function AdminSignIn() {
   )
 }
 
-export default AdminSignIn;
+export default connect(null, { adminSignIn })(AdminSignIn)
