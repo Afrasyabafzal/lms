@@ -3,8 +3,6 @@ import './Aboutus.css'
 import AVTR1 from '../assests/img/afra.jpeg'
 import AVTR2 from '../assests/img/hamza.jpeg'
 import AVTR3 from '../assests/img/hassan.jpeg'
-
-
 import { Pagination } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';

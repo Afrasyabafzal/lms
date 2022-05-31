@@ -14,7 +14,7 @@ const persistConfig = {
     key: 'root',
     storage,
     stateReconciler: autoMergeLevel2,
-    whitelist: ['learnerState']
+    whitelist: ['learnerState','adminState']
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export default persistedReducer;

@@ -1,3 +1,4 @@
+import AdminNavbar from "./adminNavbar";
 
 const user = [
     { name: 'Ali', email: 'ali@gmail.com', password: '3', Status: 'Active' },
@@ -6,7 +7,9 @@ const user = [
   
  function Adduser()  {
     return (
+      
       <div className="px-4 sm:px-6 lg:px-8">
+        <AdminNavbar></AdminNavbar>
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold text-gray-900">Users</h1>

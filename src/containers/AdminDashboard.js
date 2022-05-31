@@ -1,7 +1,5 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import AdminNavbar from '../components/adminNavbar'
+import Footer from '../components/footer';
 
 
 function AdminDashboard() {
@@ -25,6 +23,7 @@ function AdminDashboard() {
           </div>
         </main>
       </div>
+      <Footer></Footer>
     </>
   )
 }

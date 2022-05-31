@@ -4,12 +4,13 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { adminSignOut } from '../redux/action/admin.action'
+import { useState } from 'react'
 
 
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Courses', href: '#', current: false },
+  { name: 'Dashboard', href: '#', current: false },
+  { name: 'Courses', href: '/adminC', current: false },
   { name: 'Learners', href: '#', current: false },
   { name: 'Reports', href: '#', current: false },
 ]
@@ -23,6 +24,12 @@ const AdminNavbar = (props) =>{
   const navigate = useNavigate()
   console.log("props",props);
   const user = props.admin ? props.admin : null;
+  const [navig,setNavigate] = useState([
+    { name: 'Dashboard', href: '#', current: false },
+    { name: 'Courses', href: '/adminC', current: false },
+    { name: 'Learners', href: '/adduser', current: false },
+    { name: 'Reports', href: '#', current: false },
+  ])
   console.log('user',user)
   const handleSignout = (e) => {
     e.preventDefault();
@@ -30,6 +37,17 @@ const AdminNavbar = (props) =>{
     props.stateChange(null);
     console.log("SIGNOUT")
   }
+  const handleClick = (e) => {
+    console.log(e)
+    setNavigate(navig.map(item => {
+      if (item.name === e.name) {
+        return { ...item, current: true }
+      }
+      return { ...item, current: false }
+    }
+    ))
+
+  } 
   const userNavigation = [
     { name: 'Your Profile', href: '#', onClick:handleSignout },
     { name: 'Sign out', href: '#', onClick:handleSignout },
@@ -52,10 +70,13 @@ const AdminNavbar = (props) =>{
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-                        {navigation.map((item) => (
+                        {navig ? navig.map((item) => (
                           <a
                             key={item.name}
                             href={item.href}
+                            onClick={ ()=>{
+                               handleClick(item)
+                            }}
                             className={classNames(
                               item.current
                                 ? 'bg-gray-900 text-white'
@@ -66,7 +87,7 @@ const AdminNavbar = (props) =>{
                           >
                             {item.name}
                           </a>
-                        ))}
+                        )):null}
                       </div>
                     </div>
                   </div>

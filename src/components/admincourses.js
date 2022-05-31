@@ -1,3 +1,4 @@
+import AdminNavbar from './adminNavbar';
 import Navbar from './learnerNavbar';
 const course = [
     { coursename: 'Programming Fundamental', coursecode: 'CS124', credithours: '3', enrollment: 'Active' },
@@ -7,7 +8,7 @@ const course = [
  function CourseAdmin()  {
     return (
       <div className="px-4 sm:px-6 lg:px-8">
-        <Navbar />
+        <AdminNavbar />
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold text-gray-900">Admin Courses</h1>
@@ -72,10 +73,7 @@ const course = [
                     <a href="#" className="text-indigo-600 hover:text-indigo-900">
                       Edit<span className="sr-only">, {course.coursename}</span>
                     </a>
-  <a>                      <td>
-                      Delete<span className="sr-only">, {course.coursename}</span>
-                      </td>
-</a>
+                    <a><td>Delete<span className="sr-only">, {course.coursename}</span></td></a>
                   </td>
                 </tr>
               ))}
