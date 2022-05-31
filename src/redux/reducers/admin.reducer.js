@@ -1,4 +1,4 @@
-import { ADMIN_SIGN_UP,ADMIN_SIGN_IN } from "../actionTypes/admin.actionType";
+import { ADMIN_SIGN_UP,ADMIN_SIGN_IN,CREATE_COURSE } from "../actionTypes/admin.actionType";
 
 const initialState = {
     admin: ''
@@ -16,6 +16,8 @@ const adminReducer = (state = initialState, action) => {
             const adminSignInJS = JSON.stringify(payload.data.accessToken)
             localStorage.setItem('user',JSON.stringify('admin'))
             localStorage.setItem('token',adminSignInJS)
+            return {...state, admin: payload.data}
+        case CREATE_COURSE:
             return {...state, admin: payload.data}
         default:
             return state;

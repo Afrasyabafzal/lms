@@ -1,13 +1,18 @@
 import AdminNavbar from './adminNavbar';
-import Navbar from './learnerNavbar';
+import CoursePopUp from './addcoursepopup';
+import { useState } from 'react';
+import { addCourse } from '../redux/action/admin.action';
+import { connect } from 'react-redux';
 const course = [
     { coursename: 'Programming Fundamental', coursecode: 'CS124', credithours: '3', enrollment: 'Active' },
     
   ]
   
- function CourseAdmin()  {
+ const CourseAdmin = (props) => {
+   const [open, setOpen] = useState(false);
     return (
       <div className="px-4 sm:px-6 lg:px-8">
+        <CoursePopUp open={open} setOpen={setOpen} addCourse={props.addCourse} />
         <AdminNavbar />
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
@@ -20,6 +25,7 @@ const course = [
             <button
               type="button"
               className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+              onClick={() => setOpen(true)}
             >
               Add course
             </button>
@@ -83,4 +89,4 @@ const course = [
       </div>
     )
   }
-  export default CourseAdmin;
+  export default connect(null, { addCourse })(CourseAdmin);
