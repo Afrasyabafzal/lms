@@ -1,4 +1,4 @@
-import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN } from "../actionTypes/admin.actionType";
+import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN,CREATE_COURSE } from "../actionTypes/admin.actionType";
 import { notification } from 'antd'
 import axios from 'axios'
 
@@ -117,6 +117,49 @@ export const adminSignOut = (navigate) => async (dispatch,getState) => {
             notification.error({
                 message: 'Error',
                 description: 'Admin not signed out',
+                duration: 2
+            })
+        }
+    } catch (error) {
+        if(error.response.data.status === 'error'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }else if(error.response.data.status === 'fail'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }
+    }
+}
+
+export const addCourse = (course, navigate) => async (dispatch,getState) => {
+    try{
+        const headers = {
+            'Content-Type': 'application/json',
+            'authorization': getState().adminState.admin.accessToken
+        }
+        const { data } = await axios.post(`${SERVER_BASE_URL}/admin/createCourse`, course, {headers : headers})
+        console.log("DATA",data);
+        dispatch({
+            type: CREATE_COURSE,
+            payload: data
+        })
+        if(data.status === 'success'){
+            notification.success({
+                message: 'Success',
+                description: 'Course created successfully',
+                duration: 2
+            })
+            navigate('/adminDashboard')
+        }else {
+            notification.error({
+                message: 'Error',
+                description: 'Course not created',
                 duration: 2
             })
         }
