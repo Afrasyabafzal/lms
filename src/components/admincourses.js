@@ -1,8 +1,9 @@
 import AdminNavbar from './adminNavbar';
 import CoursePopUp from './addcoursepopup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addCourse } from '../redux/action/admin.action';
 import { connect } from 'react-redux';
+import { getCourses } from '../redux/action/admin.action';
 const course = [
     { coursename: 'Programming Fundamental', coursecode: 'CS124', credithours: '3', enrollment: 'Active' },
     
@@ -10,6 +11,13 @@ const course = [
   
  const CourseAdmin = (props) => {
    const [open, setOpen] = useState(false);
+   props.courses ? console.log(props.courses) : console.log("No courses");
+   useEffect(() => {
+    props.getCourses();
+    },[])
+    props.courses ? console.log(props.courses) : console.log("No courses");
+
+
     return (
       <div className="px-4 sm:px-6 lg:px-8">
         <CoursePopUp open={open} setOpen={setOpen} addCourse={props.addCourse} />
@@ -42,16 +50,10 @@ const course = [
                   scope="col"
                   className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
                 >
-                  Course-Code
-                </th>
-                <th
-                  scope="col"
-                  className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
-                >
-                  Credit-Hours
+                  Course-Description
                 </th>
                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                  Entrollement Status
+                  Course-Price
                 </th>
                 <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                   <span className="sr-only">Edit</span>
@@ -63,18 +65,18 @@ const course = [
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white">
-              {course.map((course) => (
+              {props.courses? props.courses.map((course) => (
                 <tr key={course.coursecode}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                    {course.coursename}
+                    {course.courseName}
                   </td>
                   <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">
-                    {course.coursecode}
+                    {course.courseDescription}
                   </td>
                   <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">
                     {course.credithours}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{course.enrollment}</td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{course.price}</td>
                   <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                     <a href="#" className="text-indigo-600 hover:text-indigo-900">
                       Edit<span className="sr-only">, {course.coursename}</span>
@@ -82,11 +84,17 @@ const course = [
                     <a><td>Delete<span className="sr-only">, {course.coursename}</span></td></a>
                   </td>
                 </tr>
-              ))}
+              )): <tr><td>No courses</td></tr>}
             </tbody>
           </table>
         </div>
       </div>
     )
   }
-  export default connect(null, { addCourse })(CourseAdmin);
+  const mapStateToProps = (state) => {
+    return {
+      courses: state.adminState.admin.courses
+    }
+  }
+  
+  export default connect(mapStateToProps, { addCourse,getCourses })(CourseAdmin);

@@ -25,7 +25,7 @@ export default function App() {
         <Route path="/admin" element={<AdminSignIn />} />
         <Route path="/footer" element={<Footer />} />
         <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/Landingpage" element={<Landingpage />} />
+        <Route path="/" element={<Landingpage />} />
         <Route path="/*" element={<Error404/>} />
       </Routes>
     </BrowserRouter>

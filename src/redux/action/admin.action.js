@@ -1,4 +1,4 @@
-import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN,CREATE_COURSE } from "../actionTypes/admin.actionType";
+import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN,CREATE_COURSE,GET_COURSES } from "../actionTypes/admin.actionType";
 import { notification } from 'antd'
 import axios from 'axios'
 import { LEARNER_SIGN_UP } from "../actionTypes/learner.actionType";
@@ -220,9 +220,51 @@ export const addUser = (user, navigate) => async (dispatch,getState) => {
                 placement: "topRight",
             })
         }
+
+  }
+}
+export const getCourses = () => async (dispatch,getState) => {
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+            'authorization': getState().adminState.admin.accessToken
+        }
+        const { data } = await axios.get(`${SERVER_BASE_URL}/admin/courses`, {headers : headers})
+        console.log("DATA",data);
+        dispatch({
+            type: GET_COURSES,
+            payload: data
+        })
+        if(data.status === 'success'){
+            notification.success({
+                message: 'Success',
+                description: 'Courses fetched successfully',
+                duration: 2
+            })
+        }else {
+            notification.error({
+                message: 'Error',
+                description: 'Courses not fetched',
+                duration: 2
+            })
+        }
+    } catch (error) {
+        if(error.response.data.status === 'error'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }else if(error.response.data.status === 'fail'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }
+
     }
 }
-
 
 
 

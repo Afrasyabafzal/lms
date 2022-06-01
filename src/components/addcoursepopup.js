@@ -54,7 +54,7 @@ const CoursePopUp = ({open,setOpen,addCourse}) => {
             leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
           >
             <div className="flex text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl">
-              <div className="w-full relative flex items-center bg-white px-4 pt-14 pb-8 overflow-hidden shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+              <div className="w-full bg-white  ">
                 <button
                   type="button"
                   className="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8"
@@ -63,8 +63,6 @@ const CoursePopUp = ({open,setOpen,addCourse}) => {
                   <span className="sr-only">Close</span>
                   <XIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
-
-                
                     <section aria-labelledby="options-heading" className="mt-6">
                       <form>
                       <div className="border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
@@ -76,7 +74,6 @@ const CoursePopUp = ({open,setOpen,addCourse}) => {
                             name="courseName"
                             id="name"
                             className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                            placeholder="Course Name"
                             onChange={handleChange}
                         />
                         </div> <br/>
@@ -89,7 +86,6 @@ const CoursePopUp = ({open,setOpen,addCourse}) => {
                             name="courseDescription"
                             id="name"
                             className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                            placeholder="Course Description"
                             onChange={handleChange}
                         />
                         </div>

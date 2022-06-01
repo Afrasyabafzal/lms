@@ -8,6 +8,7 @@ const cloudinary = require('../utils/cloud');
 const Material = require('../model/material');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const { getCourse } = require('./learner.controller');
 
 module.exports = {
     signUp: catchAsync(async (req, res, next) => {
@@ -74,7 +75,17 @@ module.exports = {
             message: 'Material created successfully',
             course: course
         });
-    })
+    }),
+    getCourses: catchAsync(async (req, res, next) => {
+        const token = req.headers.authorization;
+        const decoded = verify(token, PrivateKey);
+        const courses = await Course.find({admin: decoded.id});
+        res.status(200).json({
+            status: 'success',
+            data: courses,
+            message: 'Courses fetched successfully'
+        });
+    }),
 }
 
 

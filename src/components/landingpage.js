@@ -1,20 +1,22 @@
-//LandingPage
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
+import { Popover } from '@headlessui/react'
 import {
-
   InboxIcon,
   MenuIcon,
-  XIcon,
 } from '@heroicons/react/outline'
+import logo from '../assests/img/logo.png'
+import { useState } from 'react'
+import Aboutus from './aboutus'
+import Footer from './footer'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Landingpage() {
+  const [open, setOpen] = useState(false)
   return (
     <div className="bg-white">
+      <Aboutus open={open} setOpen={setOpen}/>
       <header>
         <Popover className="relative bg-white">
           <div className="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-8">
@@ -23,7 +25,7 @@ export default function Landingpage() {
                 <span className="sr-only">Workflow</span>
                 <img
                   className="h-8 w-auto sm:h-10"
-                  src="https://tailwindui.com/img/logos/workflow-mark-purple-600-to-indigo-600.svg"
+                  src={logo}
                   alt=""
                 />
               </a>
@@ -39,7 +41,7 @@ export default function Landingpage() {
               <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
                 About Us
               </a>
-              <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900" onClick={() =>setOpen(true) }>
                 Partners
               </a>
               <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
@@ -47,11 +49,11 @@ export default function Landingpage() {
               </a>
             </Popover.Group>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-              <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+              <a href="/signIn" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                 Sign in
               </a>
               <a
-                href="#"
+                href="/signUp"
                 className="ml-8 whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-indigo-700"
               >
                 Sign up
@@ -84,22 +86,6 @@ export default function Landingpage() {
                 It delivers a powerful set of learner-centric tools and collaborative learning environments that empower teaching as well as 
                 learning, and are simple to understand and easy to use.
                 </p>
-                <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                  <div className="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5">
-                    <a
-                      href="#"
-                      className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-700 bg-white hover:bg-indigo-50 sm:px-8"
-                    >
-                      Get started
-                    </a>
-                    <a
-                      href="#"
-                      className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-500 bg-opacity-60 hover:bg-opacity-70 sm:px-8"
-                    >
-                      Live demo
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -153,6 +139,7 @@ export default function Landingpage() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }
