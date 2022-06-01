@@ -36,7 +36,8 @@ const data = [
 
 const Aboutus = ({open, setOpen}) => {
 return (
-    <Transition.Root show={open} as={Fragment}>
+  
+<Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setOpen}>
         <div className="flex min-h-screen text-center md:block md:px-2 lg:px-4" style={{ fontSize: 0 }}>
           <Transition.Child
@@ -100,6 +101,6 @@ return (
         </div>
       </Dialog>
     </Transition.Root>
-)
+  )
 }
 export default Aboutus
