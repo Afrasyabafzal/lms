@@ -1,6 +1,7 @@
 import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN,CREATE_COURSE,GET_COURSES } from "../actionTypes/admin.actionType";
 import { notification } from 'antd'
 import axios from 'axios'
+import { LEARNER_SIGN_UP } from "../actionTypes/learner.actionType";
 
 
 const SERVER_BASE_URL ='http://localhost:4000'
@@ -180,6 +181,48 @@ export const addCourse = (course, navigate) => async (dispatch,getState) => {
     }
 }
 
+export const addUser = (user, navigate) => async (dispatch,getState) => {
+    console.log("USER",user);
+    try {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        const { data } = await axios.post(`${SERVER_BASE_URL}/learner/signUp`, user , {headers : headers})
+        console.log(data)
+        dispatch({
+            type: LEARNER_SIGN_UP,
+            payload: data
+        })
+        if(data.status == 'success') {
+            notification.success(
+                {message: "Signed Up Successfully"}
+            )
+            navigate('/adduser')
+            
+        }
+        else if (data.status == 'fail') {
+            notification.success({
+                message:"Error While signing up",
+                placement: "topRight",
+            })
+            
+        }
+    }
+    catch(error) {
+        if(error.response.data.status == 'fail') {
+            notification.info({
+                message: error.response.data.message,
+                placement: "topRight",
+            })
+        }else if(error.response.data.status == 'error') {
+            notification.warning({ 
+                message : error.response.data.message,
+                placement: "topRight",
+            })
+        }
+
+  }
+}
 export const getCourses = () => async (dispatch,getState) => {
     try {
         const headers = {
@@ -222,7 +265,6 @@ export const getCourses = () => async (dispatch,getState) => {
 
     }
 }
-
 
 
 
