@@ -10,6 +10,8 @@ import Error404 from './Error/error'
 import Dashboard from './containers/Dashboard'
 import AdminDashboard from './containers/AdminDashboard'
 import Landingpage from './components/landingpage'
+import Aboutuspage from './components/aboutuspage'
+import Material from './components/material'
 
 export default function App() {
   return (
@@ -26,6 +28,8 @@ export default function App() {
         <Route path="/footer" element={<Footer />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/" element={<Landingpage />} />
+        <Route path="/aboutuspage" element={<Aboutuspage/>} />
+        <Route path="/material" element={<Material/>} />
         <Route path="/*" element={<Error404/>} />
       </Routes>
     </BrowserRouter>
