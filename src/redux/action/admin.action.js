@@ -1,7 +1,8 @@
-import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN,CREATE_COURSE,GET_COURSES } from "../actionTypes/admin.actionType";
+import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN,CREATE_COURSE,GET_COURSES,GET_ALL_LEARNERS } from "../actionTypes/admin.actionType";
 import { notification } from 'antd'
 import axios from 'axios'
 import { LEARNER_SIGN_UP } from "../actionTypes/learner.actionType";
+import { GET_LEARNER } from "../actionTypes/learner.actionType";
 
 
 const SERVER_BASE_URL ='http://localhost:4000'
@@ -268,3 +269,87 @@ export const getCourses = () => async (dispatch,getState) => {
 
 
 
+export const getLearner = () => async (dispatch,getState) => {
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+            'authorization': getState().adminState.admin.accessToken
+        }
+        const { data } = await axios.get(`${SERVER_BASE_URL}/admin/learners`, {headers : headers})
+        console.log("DATA",data);
+        dispatch({
+            type: GET_LEARNER,
+            payload: data
+        })
+        if(data.status === 'success'){
+            notification.success({
+                message: 'Success',
+                description: 'Learners fetched successfully',
+                duration: 2
+            })
+        }else {
+            notification.error({
+                message: 'Error',
+                description: 'Learners not fetched',
+                duration: 2
+            })
+        }
+    } catch (error) {
+        if(error.response.data.status === 'error'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }else if(error.response.data.status === 'fail'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }
+
+    }
+}
+
+export const getAllLearners = () => async (dispatch,getState) => {
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+        }
+        const { data } = await axios.get(`${SERVER_BASE_URL}/learner/allLearners`, {headers : headers})
+        console.log("DATA",data);
+        dispatch({
+            type: GET_ALL_LEARNERS,
+            payload: data
+        })
+        if(data.status === 'success'){
+            notification.success({
+                message: 'Success',
+                description: 'Learners fetched successfully',
+                duration: 2
+            })
+        }else {
+            notification.error({
+                message: 'Error',
+                description: 'Learners not fetched',
+                duration: 2
+            })
+        }
+    } catch (error) {
+        if(error.response.data.status === 'error'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }else if(error.response.data.status === 'fail'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }
+
+    }
+}

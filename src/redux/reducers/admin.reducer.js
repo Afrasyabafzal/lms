@@ -1,4 +1,4 @@
-import { ADMIN_SIGN_UP,ADMIN_SIGN_IN,CREATE_COURSE,GET_COURSES,ADMIN_SIGN_OUT } from "../actionTypes/admin.actionType";
+import { ADMIN_SIGN_UP,ADMIN_SIGN_IN,CREATE_COURSE,GET_COURSES,ADMIN_SIGN_OUT,GET_ALL_LEARNERS } from "../actionTypes/admin.actionType";
 
 const initialState = {
     admin: ''
@@ -21,6 +21,8 @@ const adminReducer = (state = initialState, action) => {
             return {...state, admin: payload.data}
         case GET_COURSES:
             return {...state, admin: {...state.admin, courses: payload.data}}
+        case GET_ALL_LEARNERS:
+            return {...state, admin: {...state.admin, learners: payload.data}}
         case ADMIN_SIGN_OUT:
             localStorage.clear()
             return {...state, admin: ''}
