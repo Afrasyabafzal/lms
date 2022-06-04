@@ -1,16 +1,19 @@
 import AdminNavbar from "./adminNavbar";
 import Learnerpopup from "./addlearner";
-import { useState } from 'react';
+import {useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { addUser } from "../redux/action/admin.action";
+import { getAllLearners } from "../redux/action/admin.action";
 
-const user = [
-    { name: 'Ali', email: 'ali@gmail.com', password: '3', Status: 'Active' },
-    
-  ]
   
  const Adduser = (props) => {
     const [open, setOpen] = useState(false);
+    const [users, setUser] = useState([]);
+    useEffect(() => {
+      props.getAllLearners();
+      },[])
+      
+
     return (
       
       <div className="px-4 sm:px-6 lg:px-8">
@@ -65,7 +68,7 @@ const user = [
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white">
-              {user.map((user) => (
+              {props.learner.map((user) => (
                 <tr key={user.email}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                     {user.name}
@@ -76,7 +79,7 @@ const user = [
                   <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">
                     {user.password}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{user.Status}</td>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1</td>
                   <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                     <a href="#" className="text-indigo-600 hover:text-indigo-900">
                       Edit<span className="sr-only">, {user.name}</span>
@@ -92,4 +95,11 @@ const user = [
     )
   }
 
-  export default connect(null, { addUser })(Adduser);
+  const mapStateToProps = (state) => {
+    console.log(state.adminState.admin.learners);
+    return {
+      learner: state.adminState.admin.learners
+    }
+  }
+
+  export default connect(mapStateToProps, { addUser,getAllLearners })(Adduser);

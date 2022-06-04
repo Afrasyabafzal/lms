@@ -118,6 +118,15 @@ module.exports = {
                 message: 'Admin fetched successfully'
             });
         }
+    }),
+
+    getAllLearners: catchAsync(async (req, res, next) => {
+        const learners = await Learner.find({});
+        res.status(200).json({
+            status: 'success',
+            data: learners,
+            message: 'Learners fetched successfully'
+        });
     })
 
 }

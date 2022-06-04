@@ -21,6 +21,8 @@ const adminReducer = (state = initialState, action) => {
             return {...state, admin:{...state.admin, course: payload.data}}
         case GET_COURSES:
             return {...state, admin: {...state.admin, courses: payload.data}}
+        case GET_ALL_LEARNERS:
+            return {...state, admin: {...state.admin, learners: payload.data}}
         case CREATE_MATERIAL:
             return {...state, admin: {...state.admin, material: payload.data}}
         case GET_MATERIALS:
