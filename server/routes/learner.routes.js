@@ -6,7 +6,8 @@ const {
     getCourses,
     getCourse,
     buyCourse,
-    getUser
+    getUser,
+    
 } = require('../controller/learner.controller');
 
 const { learnerToken } = require('../midlleware/authenticate');

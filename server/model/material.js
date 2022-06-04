@@ -1,35 +1,19 @@
 const {Schema ,model} = require('mongoose')
 
 const materialModel = new Schema({
-    materialName: {
+    name: {
         type: String,
-        required: true,
-        trim: true
-    },
-    materialDescription: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    materialType: {
-        type: String,
-        required: true,
-        trim: true,
-        enum: ['Video', 'Document', 'PPT']
+        required: true
     },
     materialUrl: {
         type: String,
         required: true,
         trim: true
     },
-    course: {
-        type: Schema.Types.ObjectId,
-        ref: 'Course'
+    admin : {
+        type : Schema.Types.ObjectId,
+        ref : 'Admin'
     },
-    assesments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Assesment'
-    }]
 })
 
 const MaterialModel = model('Material', materialModel)

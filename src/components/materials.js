@@ -1,26 +1,26 @@
 import AdminNavbar from './adminNavbar';
 import CoursePopUp from './addcoursepopup';
+import MaterialPopUp from './addMaterialsPopUp';
 import { useEffect, useState } from 'react';
-import { addCourse } from '../redux/action/admin.action';
 import { connect } from 'react-redux';
-import { getCourses } from '../redux/action/admin.action';
-const course = [
-    { coursename: 'Programming Fundamental', coursecode: 'CS124', credithours: '3', enrollment: 'Active' },
-    
-  ]
+import { createMaterial, getMaterials } from '../redux/action/admin.action';
+const materials = [{
+    name: 'Course-Name',
+    description: 'Course-Description',
+    price: 'Course-Price'
+}]
   
- const CourseAdmin = (props) => {
+const Materials = (props) => {
    const [open, setOpen] = useState(false);
-   props.courses ? console.log(props.courses) : console.log("No courses");
    useEffect(() => {
-    props.getCourses();
+    props.getMaterials();
     },[])
-    props.courses ? console.log(props.courses) : console.log("No courses");
+    props.materials ? console.log(props.materials) : console.log("No materials");
 
 
     return (
       <div className="px-4 sm:px-6 lg:px-8">
-        <CoursePopUp open={open} setOpen={setOpen} addCourse={props.addCourse} />
+        <MaterialPopUp open={open} setOpen={setOpen} createMaterial={props.createMaterial}/>
         <AdminNavbar />
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
@@ -35,7 +35,7 @@ const course = [
               className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
               onClick={() => setOpen(true)}
             >
-              Add course
+              Add Material
             </button>
           </div>
         </div>
@@ -44,52 +44,38 @@ const course = [
             <thead className="bg-gray-50">
               <tr>
                 <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                 Course-Name
-                </th>
-                <th
-                  scope="col"
-                  className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell"
-                >
-                  Course-Description
+                 Material-Name
                 </th>
                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                  Course-Price
-                </th>
-                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white">
-              {props.courses? props.courses.map((course) => (
-                <tr key={course.coursecode}>
+              {props.materials.map((material) => (
+                <tr key={material.name}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                    {course.courseName}
+                    {material.name}
                   </td>
-                  <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">
-                    {course.courseDescription}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{course.price}</td>
                   <td className="whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
                     <a href="#" className="mx-1 text-indigo-600 hover:text-indigo-900">
-                      Edit<span className="sr-only">, {course.coursename}</span>
+                      Edit<span className="sr-only">, {material.name}</span>
                     </a>
                     <a href="#" className="mx-1 text-indigo-600 hover:text-indigo-900">
-                      Delete<span className="sr-only">, {course.coursename}</span>
+                      Delete<span className="sr-only">, {material.name}</span>
                     </a>
                   </td>
                 </tr>
-              )): <tr><td>No courses</td></tr>}
+              ))}
             </tbody>
           </table>
         </div>
       </div>
     )
   }
-  const mapStateToProps = (state) => {
-    return {
-      courses: state.adminState.admin.courses
-    }
-  }
+
+  const mapStateToProps = (state) => ({
+    materials: state.adminState.admin.materials
+  })
   
-  export default connect(mapStateToProps, { addCourse,getCourses })(CourseAdmin);
+  export default connect(mapStateToProps, { createMaterial,getMaterials })(Materials);

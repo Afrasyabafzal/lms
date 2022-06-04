@@ -5,6 +5,7 @@ import SignUp from './components/signUp'
 import Aboutus from './components/aboutus'
 import AdminSignIn from './components/AdminSignin'
 import Footer from './components/footer'
+import Materials from './components/materials'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import Error404 from './Error/error'
 import Dashboard from './containers/Dashboard'
@@ -17,6 +18,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/adminDashboard" element={<AdminDashboard/>} />
+        <Route path="/materials" element={<Materials/>} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/adminC" element={<CourseAdmin />} />
         <Route path="/adduser" element={<Adduser />} />
