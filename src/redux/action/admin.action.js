@@ -1,4 +1,5 @@
-import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN,CREATE_COURSE,GET_COURSES,GET_ALL_LEARNERS } from "../actionTypes/admin.actionType";
+
+import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN,CREATE_COURSE,GET_COURSES,CREATE_MATERIAL,GET_MATERIALS } from "../actionTypes/admin.actionType";
 import { notification } from 'antd'
 import axios from 'axios'
 import { LEARNER_SIGN_UP } from "../actionTypes/learner.actionType";
@@ -224,6 +225,7 @@ export const addUser = (user, navigate) => async (dispatch,getState) => {
 
   }
 }
+
 export const getCourses = () => async (dispatch,getState) => {
     try {
         const headers = {
@@ -246,6 +248,93 @@ export const getCourses = () => async (dispatch,getState) => {
             notification.error({
                 message: 'Error',
                 description: 'Courses not fetched',
+                duration: 2
+            })
+        }
+    } catch (error) {
+        if(error.response.data.status === 'error'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }else if(error.response.data.status === 'fail'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }
+
+    }
+}
+
+export const createMaterial = (material,name, navigate) => async (dispatch,getState) => {
+    console.log("MATERIAL",material,name);
+    try{
+        const headers = {
+            'Content-Type': 'application/json',
+            'authorization': getState().adminState.admin.accessToken,
+            'name': name
+        }
+        const { data } = await axios.post(`${SERVER_BASE_URL}/admin/createMaterial`, material, {headers : headers})
+        console.log("DATA",data);
+        dispatch({
+            type: CREATE_MATERIAL,
+            payload: data
+        })
+        if(data.status === 'success'){
+            notification.success({
+                message: 'Success',
+                description: 'Material created successfully',
+            })
+            navigate('/adminDashboard')
+        }else {
+            notification.error({
+                message: 'Error',
+                description: 'Material not created',
+                duration: 2
+            })
+        }
+    } catch (error) {
+        if(error.response.data.status === 'error'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }else if(error.response.data.status === 'fail'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }
+    }
+}
+
+export const getMaterials = () => async (dispatch,getState) => {
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+            'authorization': getState().adminState.admin.accessToken
+        }
+        const { data } = await axios.get(`${SERVER_BASE_URL}/admin/materials`, {headers : headers})
+        console.log("DATA",data);
+        dispatch({
+            type: GET_MATERIALS,
+            payload: data
+        })
+        if(data.status === 'success'){
+            notification.success({
+                message: 'Success',
+                description: 'Materials fetched successfully',
+                duration: 2
+            })
+        }else {
+            notification.error({
+                message: 'Error',
+                description: 'Materials not fetched',
                 duration: 2
             })
         }

@@ -39,8 +39,6 @@ const CoursePopUp = ({open,setOpen,addCourse}) => {
           >
             <Dialog.Overlay className="hidden fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity md:block" />
           </Transition.Child>
-
-          {/* This element is to trick the browser into centering the modal contents. */}
           <span className="hidden md:inline-block md:align-middle md:h-screen" aria-hidden="true">
             &#8203;
           </span>
@@ -53,7 +51,7 @@ const CoursePopUp = ({open,setOpen,addCourse}) => {
             leaveFrom="opacity-100 translate-y-0 md:scale-100"
             leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
           >
-            <div className="flex text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl">
+            <div className="flex text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle ">
               <div className="w-full bg-white  ">
                 <button
                   type="button"
@@ -116,8 +114,8 @@ const CoursePopUp = ({open,setOpen,addCourse}) => {
                         <div className="mt-6">
                           <button
                             onClick={handleSubmit}
-                            className="relative flex w-full bg-gray-100 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200">
-                            Add to Cart<span className="sr-only"></span>
+                            className="relative flex w-full bg-gradient-to-r from-purple-600 to-indigo-600 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:from-purple-700 hover:to-indigo-700">
+                            Submit<span className="sr-only"></span>
                           </button>
                         </div>
                       </form>

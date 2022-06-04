@@ -62,6 +62,31 @@ module.exports = {
             message: 'Course created successfully'
         });
     }),
+    createMaterial: catchAsync(async (req, res, next) => {
+        console.log("req.body",req.body.name);
+        const {name, data } = req.files.file;
+        const token = req.headers.authorization;
+        const orignalName = req.body.name;
+        const decoded = verify(token, PrivateKey);
+        console.log("name",orignalName);
+        console.log("data",data);
+        const dataURI = bufferToString(name, data);
+        const secure_url = await cloudinary.uploader.upload_large(dataURI,{resource_type: "raw"},function(error,result){
+            console.log("result",result,error);
+        });
+        console.log("secure_url",secure_url.secure_url);
+        //create material
+        const newMaterial = await Material.create({name: orignalName, materialUrl: secure_url.secure_url, admin: decoded.id});
+        if(!newMaterial) {
+            return next(new AppError('Material not created', 404));
+        }
+        res.status(200).json({
+            status: 'success',
+            data: newMaterial,
+            message: 'Material created successfully'
+        });
+    }),
+
     addMaterial: catchAsync(async (req, res, next) => {
         const { orignalname, buffer } = req.file;
         const dataURI = bufferToString(orignalname, buffer);
@@ -84,6 +109,16 @@ module.exports = {
             status: 'success',
             data: courses,
             message: 'Courses fetched successfully'
+        });
+    }),
+    getMaterials: catchAsync(async (req, res, next) => {
+        const token = req.headers.authorization;
+        const decoded = verify(token, PrivateKey);
+        const materials = await Material.find({admin: decoded.id});
+        res.status(200).json({
+            status: 'success',
+            data: materials,
+            message: 'Materials fetched successfully'
         });
     }),
 }

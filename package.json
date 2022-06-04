@@ -5,9 +5,10 @@
   "dependencies": {
     "@headlessui/react": "^1.6.3",
     "@heroicons/react": "^1.0.6",
-    "@tailwindcss/forms": "^0.5.2",
     "@stripe/react-stripe-js": "^1.8.1",
     "@stripe/stripe-js": "^1.31.0",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@tailwindcss/forms": "^0.5.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
@@ -22,13 +23,13 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "swiper": "^8.1.6",
     "react-stripe-checkout": "^2.6.3",
     "reactstrap": "^9.0.3",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
+    "swiper": "^8.1.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

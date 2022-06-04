@@ -5,3 +5,6 @@ export const GET_ADMIN = "GET_ADMIN"
 export const CREATE_COURSE = "CREATE_COURSE"
 export const GET_ALL_LEARNERS = "GET_ALL_LEARNERS"
 export const GET_COURSES = "GET_COURSES"
+export const CREATE_MATERIAL = "CREATE_MATERIAL"
+export const GET_MATERIALS = "GET_MATERIALS"
+

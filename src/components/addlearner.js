@@ -52,8 +52,8 @@ const LearnerPopUp = ({open,setOpen,addLearner}) => {
               leaveFrom="opacity-100 translate-y-0 md:scale-100"
               leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
             >
-              <div className="flex text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle lg:max-w-4xl">
-                <div className="w-full relative flex items-center bg-white px-4 pt-14 pb-8 overflow-hidden shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+              <div className="flex text-base text-left transform transition w-full md:inline-block md:max-w-2xl md:px-4 md:my-8 md:align-middle ">
+                <div className="w-full bg-white ">
                   <button
                     type="button"
                     className="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8"
@@ -75,7 +75,6 @@ const LearnerPopUp = ({open,setOpen,addLearner}) => {
                               name="name"
                               id="name"
                               className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                              placeholder="Name"
                               onChange={handleChange}
                           />
                           </div> <br/>
@@ -88,7 +87,6 @@ const LearnerPopUp = ({open,setOpen,addLearner}) => {
                               name="email"
                               id="name"
                               className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                              placeholder="Email"
                               onChange={handleChange}
                           />
                           </div> <br/>
@@ -102,7 +100,6 @@ const LearnerPopUp = ({open,setOpen,addLearner}) => {
                               name="password"
                               id="name"
                               className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                              placeholder="Password"
                               onChange={handleChange}
                           />
                           </div>
@@ -110,8 +107,8 @@ const LearnerPopUp = ({open,setOpen,addLearner}) => {
                           <div className="mt-6">
                             <button
                               onClick={handleSubmit}
-                              className="relative flex w-full bg-gray-100 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200">
-                              Add to Cart<span className="sr-only"></span>
+                              className="relative flex w-full bg-gray-200 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-100">
+                              Submit<span className="sr-only"></span>
                             </button>
                           </div>
                         </form>

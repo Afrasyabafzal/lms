@@ -28,7 +28,9 @@ const AdminNavbar = (props) =>{
     { name: 'Dashboard', href: '#', current: false },
     { name: 'Courses', href: '/adminC', current: false },
     { name: 'Learners', href: '/adduser', current: false },
+    { name: 'Materials', href: '/materials', current: false },
     { name: 'Reports', href: '#', current: false },
+
   ])
   console.log('user',user)
   const handleSignout = (e) => {
