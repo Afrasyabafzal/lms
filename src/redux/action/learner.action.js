@@ -1,4 +1,4 @@
-import { LEARNER_SIGN_IN,LEARNER_SIGN_UP,LEARNER_SIGN_OUT,IS_FETCHING,ERROR,GET_LEARNER,GET_USER_ERROR } from "../actionTypes/learner.actionType";
+import { LEARNER_SIGN_IN,LEARNER_SIGN_UP,LEARNER_SIGN_OUT,IS_FETCHING,ERROR,GET_LEARNER,GET_USER_ERROR,GET_ALL_COURSES } from "../actionTypes/learner.actionType";
 import { notification } from 'antd'
 import axios from 'axios'
 import { GET_ADMIN } from "../actionTypes/admin.actionType";
@@ -99,7 +99,7 @@ export const learnerSignOut = (navigate) => async (dispatch,getState) => {
             notification.success(
                 {message: "Signed Out Successfully"}
             )
-            navigate('/signIn')
+            navigate('/')
         }else {
             notification.info({
                 message: 'Error While Signing Out'
@@ -153,3 +153,17 @@ export const getUser = () => async (dispatch) => {
 
     }
 }
+export const getAllCourses = () => async dispatch => {
+    try {
+        const { data } = await axios.get(`${SERVER_BASE_URL}/learner/courses`)
+        dispatch({
+            type : GET_ALL_COURSES,
+            payload : data 
+        })
+    } catch (error) {
+        console.log(error)
+        notification.warning({
+            message :'Error while fetching data'
+        })
+    }
+} 

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
-  { name: 'All Courses', href: '#', current: false },
+  { name: 'All Courses', href: '/learnerCourses', current: false },
   { name: 'My Courses', href: '#', current: false },
   { name: 'Reports', href: '#', current: false },
 ]

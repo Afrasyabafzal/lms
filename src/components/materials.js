@@ -52,7 +52,7 @@ const Materials = (props) => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white">
-              {props.materials.map((material) => (
+              {props.materials ? props.materials.map((material) => (
                 <tr key={material.name}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                     {material.name}
@@ -66,7 +66,7 @@ const Materials = (props) => {
                     </a>
                   </td>
                 </tr>
-              ))}
+              )): <tr><td>No Materials</td></tr>}
             </tbody>
           </table>
         </div>
@@ -74,8 +74,10 @@ const Materials = (props) => {
     )
   }
 
-  const mapStateToProps = (state) => ({
+  const mapStateToProps = (state) => {
+    return {
     materials: state.adminState.admin.materials
-  })
+    }
+  }
   
   export default connect(mapStateToProps, { createMaterial,getMaterials })(Materials);

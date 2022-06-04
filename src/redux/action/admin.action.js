@@ -1,5 +1,5 @@
 
-import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN,CREATE_COURSE,GET_COURSES,CREATE_MATERIAL,GET_MATERIALS } from "../actionTypes/admin.actionType";
+import { ADMIN_SIGN_IN, ADMIN_SIGN_UP,ADMIN_SIGN_OUT,GET_ADMIN,CREATE_COURSE,GET_COURSES,CREATE_MATERIAL,GET_MATERIALS,GET_ALL_LEARNERS } from "../actionTypes/admin.actionType";
 import { notification } from 'antd'
 import axios from 'axios'
 import { LEARNER_SIGN_UP } from "../actionTypes/learner.actionType";
@@ -314,6 +314,7 @@ export const createMaterial = (material,name, navigate) => async (dispatch,getSt
 }
 
 export const getMaterials = () => async (dispatch,getState) => {
+    console.log("MATERIALS",getState().adminState.admin.accessToken);
     try {
         const headers = {
             'Content-Type': 'application/json',
@@ -359,6 +360,7 @@ export const getMaterials = () => async (dispatch,getState) => {
 
 
 export const getLearner = () => async (dispatch,getState) => {
+    console.log("GET LEARNER");
     try {
         const headers = {
             'Content-Type': 'application/json',

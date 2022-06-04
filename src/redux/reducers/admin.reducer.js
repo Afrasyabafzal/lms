@@ -1,4 +1,4 @@
-import { ADMIN_SIGN_UP,ADMIN_SIGN_IN,CREATE_COURSE,GET_COURSES,ADMIN_SIGN_OUT,CREATE_MATERIAL,GET_MATERIALS } from "../actionTypes/admin.actionType";
+import { ADMIN_SIGN_UP,ADMIN_SIGN_IN,CREATE_COURSE,GET_COURSES,ADMIN_SIGN_OUT,CREATE_MATERIAL,GET_MATERIALS,GET_ALL_LEARNERS } from "../actionTypes/admin.actionType";
 
 const initialState = {
     admin: ''

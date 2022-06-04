@@ -1,4 +1,4 @@
-import { LEARNER_SIGN_IN, LEARNER_SIGN_UP, LEARNER_SIGN_OUT,GET_LEARNER,GET_USER_ERROR } from "../actionTypes/learner.actionType";
+import { LEARNER_SIGN_IN, LEARNER_SIGN_UP, LEARNER_SIGN_OUT,GET_LEARNER,GET_USER_ERROR,GET_ALL_COURSES } from "../actionTypes/learner.actionType";
 
 const initialState = {
     learner : ''
@@ -24,6 +24,8 @@ const learnerReducer = (state = initialState, action) => {
             return {...state, learner: payload.data}
         case GET_USER_ERROR:
             return {...state, learner: ''}
+        case GET_ALL_COURSES:
+            return {...state,courses: payload.data}
         default:
             return state;
     }

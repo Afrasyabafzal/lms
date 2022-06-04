@@ -68,7 +68,7 @@ import { getAllLearners } from "../redux/action/admin.action";
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white">
-              {props.learner.map((user) => (
+              {props.learner ? props.learner.map((user) => (
                 <tr key={user.email}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                     {user.name}
@@ -87,7 +87,7 @@ import { getAllLearners } from "../redux/action/admin.action";
                     <a><td>Delete<span className="sr-only">, {user.name}</span></td></a>
                   </td>
                 </tr>
-              ))}
+              )):<tr><td>No User</td></tr>}
             </tbody>
           </table>
         </div>
