@@ -3,7 +3,7 @@ import CoursePopUp from './addcoursepopup';
 import MaterialPopUp from './addMaterialsPopUp';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { createMaterial, getMaterials } from '../redux/action/admin.action';
+import { createMaterial, getMaterials,deleteMaterial } from '../redux/action/admin.action';
 const materials = [{
     name: 'Course-Name',
     description: 'Course-Description',
@@ -61,7 +61,7 @@ const Materials = (props) => {
                     <a href="#" className="mx-1 text-indigo-600 hover:text-indigo-900">
                       Edit<span className="sr-only">, {material.name}</span>
                     </a>
-                    <a href="#" className="mx-1 text-indigo-600 hover:text-indigo-900">
+                    <a href="#" onClick = {() => props.deleteMaterial(material._id)}className="mx-1 text-indigo-600 hover:text-indigo-900">
                       Delete<span className="sr-only">, {material.name}</span>
                     </a>
                   </td>
@@ -80,4 +80,4 @@ const Materials = (props) => {
     }
   }
   
-  export default connect(mapStateToProps, { createMaterial,getMaterials })(Materials);
+  export default connect(mapStateToProps, { createMaterial,getMaterials,deleteMaterial })(Materials);

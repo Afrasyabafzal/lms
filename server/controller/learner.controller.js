@@ -127,6 +127,19 @@ module.exports = {
             data: learners,
             message: 'Learners fetched successfully'
         });
+    }),
+
+    deleteLearner: catchAsync(async (req, res, next) => {
+        console.log("Learner", req.params.id);
+        const deletedLearner = await Learner.findByIdAndDelete(req.params.id);
+        console.log("deletedLearner", deletedLearner);
+        if(!deletedLearner){ console.log("Learner not found"); return next(new AppError('Learner not found', 400)) }
+        res.status(200).json({
+            status: 'success',
+            data: deletedLearner,
+            message: 'Learner deleted successfully'
+        });
     })
+
 
 }

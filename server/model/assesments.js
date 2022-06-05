@@ -3,17 +3,41 @@ const {Schema, model} = require("mongoose");
 
 const assesmentSchema = new Schema(
     {
+        name: {
+            type: String,
+            required: true
+        },
         question: {
             type: String,
             required: true,
             trim: true
         },
-        answer: {
+        answer1: {
             type: String,
-            required: false,
+            required: true,
             trim: true
         },
-        createdBy: {
+        answer2: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        answer3: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        answer4: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        correctAnswer: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        admin: {
             type: Schema.Types.ObjectId,
             ref: 'Admin'
         },

@@ -3,7 +3,7 @@ import Learnerpopup from "./addlearner";
 import {useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { addUser } from "../redux/action/admin.action";
-import { getAllLearners } from "../redux/action/admin.action";
+import { getAllLearners,deleteLearner } from "../redux/action/admin.action";
 
   
  const Adduser = (props) => {
@@ -80,11 +80,13 @@ import { getAllLearners } from "../redux/action/admin.action";
                     {user.password}
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1</td>
-                  <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                    <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                  <td className="whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
+                    <a href="#" className="mx-1 text-indigo-600 hover:text-indigo-900">
                       Edit<span className="sr-only">, {user.name}</span>
                     </a>
-                    <a><td>Delete<span className="sr-only">, {user.name}</span></td></a>
+                    <a href="#" onClick={() => props.deleteLearner(user._id)} className="mx-1 text-indigo-600 hover:text-indigo-900">
+                      Delete<span className="sr-only">, {user.name}</span>
+                    </a>
                   </td>
                 </tr>
               )):<tr><td>No User</td></tr>}
@@ -102,4 +104,4 @@ import { getAllLearners } from "../redux/action/admin.action";
     }
   }
 
-  export default connect(mapStateToProps, { addUser,getAllLearners })(Adduser);
+  export default connect(mapStateToProps, { addUser,getAllLearners,deleteLearner })(Adduser);

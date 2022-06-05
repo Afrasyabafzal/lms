@@ -29,7 +29,7 @@ const AdminNavbar = (props) =>{
     { name: 'Courses', href: '/adminC', current: false },
     { name: 'Learners', href: '/adduser', current: false },
     { name: 'Materials', href: '/materials', current: false },
-    { name: 'Reports', href: '#', current: false },
+    { name: 'Assessments', href: '/assessment', current: false },
 
   ])
   console.log('user',user)

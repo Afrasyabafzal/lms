@@ -12,6 +12,8 @@ import Dashboard from './containers/Dashboard'
 import AdminDashboard from './containers/AdminDashboard'
 import Landingpage from './components/landingpage'
 import CourseLearner from './components/learnerCourses'
+import MaterialDetailPage from './components/materialDetailPage'
+import Assessment from './components/assessment'
 
 export default function App() {
   return (
@@ -31,6 +33,8 @@ export default function App() {
         <Route path="/" element={<Landingpage />} />
         <Route path="/learnerCourses" element={<CourseLearner />} />
         <Route path="/*" element={<Error404/>} />
+        <Route path="/materialDetailPage" element={<MaterialDetailPage/>} />
+        <Route path="/assessment" element={<Assessment/>} />
       </Routes>
     </BrowserRouter>
     </>
