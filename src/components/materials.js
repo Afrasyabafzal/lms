@@ -24,9 +24,9 @@ const Materials = (props) => {
         <AdminNavbar />
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-xl font-semibold text-gray-900">Admin Courses</h1>
+            <h1 className="text-xl font-semibold text-gray-900">Material</h1>
             <p className="mt-2 text-sm text-gray-700">
-              A list of all the courses with their enrollment status ,Course code and Credit Hours;
+              A list of all the Materials and actions to perform.
             </p>
           </div>
           <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">

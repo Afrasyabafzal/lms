@@ -21,9 +21,9 @@ const Assessment = (props) => {
         <AdminNavbar />
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-xl font-semibold text-gray-900">Admin Courses</h1>
+            <h1 className="text-xl font-semibold text-gray-900">Assessments</h1>
             <p className="mt-2 text-sm text-gray-700">
-              A list of all the courses with their enrollment status ,Course code and Credit Hours;
+              A list of all the assessments and actions to perform.
             </p>
           </div>
           <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -41,7 +41,7 @@ const Assessment = (props) => {
             <thead className="bg-gray-50">
               <tr>
                 <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                 Material-Name
+                 Assessment-Name
                 </th>
                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                   Actions
