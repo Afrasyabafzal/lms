@@ -12,7 +12,8 @@ const {
     deleteCourse,
     createAssessment,
     getAssessments,
-    deleteAssessment
+    deleteAssessment,
+    addUserToCourse
 } = require('../controller/admin.controller');
 const { adminToken } = require('../midlleware/authenticate');
 const upload = require('multer');
@@ -31,5 +32,6 @@ router.post('/admin/createAssessment', adminToken, createAssessment);
 router.get('/admin/assessments', adminToken, getAssessments);
 router.delete('/admin/deleteAssessment/:id', deleteAssessment);
 
+router.post('/admin/addLearner/:id', adminToken, addUserToCourse);
 
 module.exports = router;

@@ -84,7 +84,7 @@ import { getAllLearners,deleteLearner } from "../redux/action/admin.action";
                     <a href="#" className="mx-1 text-indigo-600 hover:text-indigo-900">
                       Edit<span className="sr-only">, {user.name}</span>
                     </a>
-                    <a href="#" onClick={() => props.deleteLearner(user._id)} className="mx-1 text-indigo-600 hover:text-indigo-900">
+                    <a href="#" onClick={() => props.deleteLearner(user._id )} className="mx-1 text-indigo-600 hover:text-indigo-900">
                       Delete<span className="sr-only">, {user.name}</span>
                     </a>
                   </td>

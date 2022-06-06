@@ -689,3 +689,87 @@ export const deleteAssessment = (id) => async (getState) => {
         }
     }
 }
+
+export const addMaterialToCourse = (materialID,courseID) => async (dispatch,getState) => {
+    console.log("hello",materialID,courseID)
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+            'authorization': getState().adminState.admin.accessToken
+        }
+        const { data: response } = await axios.post(`${SERVER_BASE_URL}/admin/addMaterial/${courseID}`, materialID, {headers : headers})
+        console.log("DATA",response);
+        if(response.status === 'success'){
+            notification.success({
+                message: 'Success',
+                description: 'Material added to course successfully',
+                duration: 2
+            })
+        }else {
+            notification.error({
+                message: 'Error',
+                description: 'Material not added to course',
+                duration: 2
+            })
+        }
+    }
+    catch (error) {
+        if(error.response.data.status === 'error'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }
+        else if(error.response.data.status === 'fail'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }
+    }
+}
+
+export const addLearnerToCourse = (materialID,courseID) => async (dispatch,getState) => {
+    console.log("hello",materialID,courseID)
+    try {
+        const headers = {
+            'Content-Type': 'application/json',
+            'authorization': getState().adminState.admin.accessToken
+        }
+        const { data: response } = await axios.post(`${SERVER_BASE_URL}/admin/addLearner/${courseID}`, materialID, {headers : headers})
+        console.log("DATA",response);
+        if(response.status === 'success'){
+            notification.success({
+                message: 'Success',
+                description: 'Material added to course successfully',
+                duration: 2
+            })
+        }else {
+            notification.error({
+                message: 'Error',
+                description: 'Material not added to course',
+                duration: 2
+            })
+        }
+    }
+    catch (error) {
+        if(error.response.data.status === 'error'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }
+        else if(error.response.data.status === 'fail'){
+            notification.error({
+                message: 'Error',
+                description: error.response.data.message,
+                duration: 2
+            })
+        }
+    }
+}
+
+

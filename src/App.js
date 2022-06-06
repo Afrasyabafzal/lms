@@ -14,6 +14,8 @@ import Landingpage from './components/landingpage'
 import CourseLearner from './components/learnerCourses'
 import MaterialDetailPage from './components/materialDetailPage'
 import Assessment from './components/assessment'
+import CourseMaterials from './components/courseMaterial'
+import CourseLearners from './components/courseLearner'
 
 export default function App() {
   return (
@@ -35,6 +37,8 @@ export default function App() {
         <Route path="/*" element={<Error404/>} />
         <Route path="/materialDetailPage" element={<MaterialDetailPage/>} />
         <Route path="/assessment" element={<Assessment/>} />
+        <Route path="/course" element={<CourseMaterials/>} />
+        <Route path="/courseLearner" element={<CourseLearners/>} />
       </Routes>
     </BrowserRouter>
     </>

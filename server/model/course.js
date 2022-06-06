@@ -24,6 +24,10 @@ const courseSchema = new Schema(
       type : Schema.Types.ObjectId,
       ref : 'Admin'
     },
+    learners : [{
+      type : Schema.Types.ObjectId,
+      ref : 'Learner'
+    }],
     revenue : {
       type : Number,
       required : false,

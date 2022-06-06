@@ -7,6 +7,7 @@ const {createToken} = require('../utils/createToken');
 const cloudinary = require('../utils/cloud');
 const Material = require('../model/material');
 const Assessment = require('../model/assesments');
+const Learner = require('../model/learner');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const { getCourse } = require('./learner.controller');
@@ -89,17 +90,23 @@ module.exports = {
     }),
 
     addMaterial: catchAsync(async (req, res, next) => {
-        const { orignalname, buffer } = req.file;
-        const dataURI = bufferToString(orignalname, buffer);
-        const secure_url = await cloudinary.uploader.upload(dataURI);
+        console.log("req.body",req.body,req.params.id);
         const courseId = req.params.id;
-        const newMaterial = await Material.create({...req.body, materialUrl:secure_url,course: courseId});
-        const course = await Course.findByIdAndUpdate(courseId, {$push: {material: newMaterial}});
+        const newMaterial = await Material.find({_id: req.body._id});
+        console.log("newMaterial",newMaterial);
+        if (newMaterial.length === 0) {
+            return next(new AppError('Material not found', 404));
+        }
+        const updatedCourse = await Course.findByIdAndUpdate(courseId, {$addToSet: {material: newMaterial[0]._id}});
+        console.log("course",updatedCourse);
+        if(!updatedCourse) {
+            return next(new AppError('Course not found', 404));
+        }
         res.status(200).json({
             status: 'success',
             data: newMaterial,
             message: 'Material created successfully',
-            course: course
+            course: updatedCourse
         });
     }),
     getCourses: catchAsync(async (req, res, next) => {
@@ -181,7 +188,27 @@ module.exports = {
             data: assesment,
             message: 'Course deleted successfully'
         });
-    }) 
+    }),
+    addUserToCourse: catchAsync(async (req, res, next) => {
+        console.log("req.body",req.body,req.params.id);
+        const courseId = req.params.id;
+        const newLearner = await Learner.find({_id: req.body._id});
+        console.log("newMaterial",newLearner);
+        if (newLearner.length === 0) {
+            return next(new AppError('Material not found', 404));
+        }
+        const updatedCourse = await Course.findByIdAndUpdate(courseId, {$addToSet: {learners: newLearner[0]._id}});
+        console.log("course",updatedCourse);
+        if(!updatedCourse) {
+            return next(new AppError('Course not found', 404));
+        }
+        res.status(200).json({
+            status: 'success',
+            data: newLearner,
+            message: 'Learner linked successfully',
+            course: updatedCourse
+        });
+    }),
 
 }
 

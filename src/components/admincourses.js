@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { addCourse } from '../redux/action/admin.action';
 import { connect } from 'react-redux';
 import { getCourses,deleteCourse } from '../redux/action/admin.action';
-import { Link } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
 const course = [
     { coursename: 'Programming Fundamental', coursecode: 'CS124', credithours: '3', enrollment: 'Active' },
     
@@ -64,7 +64,7 @@ const course = [
             <tbody className="divide-y divide-gray-200 bg-white">
               {props.courses? props.courses.map((course) => (
                 <tr key={course.coursecode}>
-                  <Link to={`/materialDetailPage`}>
+                  <Link to={`/materialDetailPage`} state={course}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                     {course.courseName}
                   </td>
