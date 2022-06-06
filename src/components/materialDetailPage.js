@@ -44,7 +44,7 @@ const MaterialDetailPage = (props)  => {
   const location = useLocation()
   const [Data, setData] = useState(location.state)
   const [chart, setChart] = useState({
-    labels: ["Under 18","Age 18-54","Age 55-64"],
+    labels: ["Learners","Materials","Started"],
     datasets: [
       {
         data:[2000,4000,2850],
