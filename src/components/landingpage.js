@@ -7,6 +7,7 @@ import logo from '../assests/img/logo.png'
 import { useState } from 'react'
 import Aboutus from './aboutus'
 import Footer from './footer'
+import landdash from '../assests/img/dashss.jpeg'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -130,7 +131,7 @@ export default function Landingpage() {
                 <div className="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                   <img
                     className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                    src="https://tailwindui.com/img/component-images/inbox-app-screenshot-1.jpg"
+                    src={landdash}
                     alt="Inbox user interface"
                   />
                 </div>
