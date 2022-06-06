@@ -3,7 +3,9 @@ import CoursePopUp from './addcoursepopup';
 import { useEffect, useState } from 'react';
 import { addCourse } from '../redux/action/admin.action';
 import { connect } from 'react-redux';
-import { getCourses } from '../redux/action/admin.action';
+import { getCourses,deleteCourse } from '../redux/action/admin.action';
+import { CURRENCY_SYMBOL } from '../utils/constant';
+import { Link,useLocation } from 'react-router-dom';
 const course = [
     { coursename: 'Programming Fundamental', coursecode: 'CS124', credithours: '3', enrollment: 'Active' },
     
@@ -26,7 +28,7 @@ const course = [
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold text-gray-900">Admin Courses</h1>
             <p className="mt-2 text-sm text-gray-700">
-              A list of all the courses with their enrollment status ,Course code and Credit Hours;
+            A list of all the courses with their Description , Price and Actions.
             </p>
           </div>
           <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -55,7 +57,7 @@ const course = [
                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                   Course-Price
                 </th>
-                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                <th scope="col" className="relative py-3.5 pl-3 pr-4 text-sm font-semibold text-gray-900">
                   Actions
                 </th>
               </tr>
@@ -63,18 +65,21 @@ const course = [
             <tbody className="divide-y divide-gray-200 bg-white">
               {props.courses? props.courses.map((course) => (
                 <tr key={course.coursecode}>
+                  <Link to={`/materialDetailPage`} state={course}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                     {course.courseName}
                   </td>
+                  </Link>
                   <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 sm:table-cell">
                     {course.courseDescription}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{course.price}</td>
+                  
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">$ {course.price}</td>
                   <td className="whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
                     <a href="#" className="mx-1 text-indigo-600 hover:text-indigo-900">
                       Edit<span className="sr-only">, {course.coursename}</span>
                     </a>
-                    <a href="#" className="mx-1 text-indigo-600 hover:text-indigo-900">
+                    <a href="#" onClick={()=>props.deleteCourse(course._id)} className="mx-1 text-indigo-600 hover:text-indigo-900">
                       Delete<span className="sr-only">, {course.coursename}</span>
                     </a>
                   </td>
@@ -92,4 +97,4 @@ const course = [
     }
   }
   
-  export default connect(mapStateToProps, { addCourse,getCourses })(CourseAdmin);
+  export default connect(mapStateToProps, { addCourse,getCourses,deleteCourse })(CourseAdmin);

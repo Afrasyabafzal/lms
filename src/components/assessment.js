@@ -1,32 +1,29 @@
 import AdminNavbar from './adminNavbar';
-import CoursePopUp from './addcoursepopup';
-import MaterialPopUp from './addMaterialsPopUp';
+import AssessmentPopUp from './assessmentPopUp';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { createMaterial, getMaterials,deleteMaterial } from '../redux/action/admin.action';
+import { createAssessment, getAllAssessments, deleteAssessment } from '../redux/action/admin.action';
 const materials = [{
     name: 'Course-Name',
     description: 'Course-Description',
     price: 'Course-Price'
 }]
   
-const Materials = (props) => {
+const Assessment = (props) => {
    const [open, setOpen] = useState(false);
    useEffect(() => {
-    props.getMaterials();
+    props.getAllAssessments();
     },[])
-    props.materials ? console.log(props.materials) : console.log("No materials");
-
-
+    props.assessments ? console.log(props.assessments) : console.log('No assessments');
     return (
       <div className="px-4 sm:px-6 lg:px-8">
-        <MaterialPopUp open={open} setOpen={setOpen} createMaterial={props.createMaterial}/>
+        <AssessmentPopUp open={open} setOpen={setOpen} createAssessment={props.createAssessment}/>
         <AdminNavbar />
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-xl font-semibold text-gray-900">Material</h1>
+            <h1 className="text-xl font-semibold text-gray-900">Assessments</h1>
             <p className="mt-2 text-sm text-gray-700">
-              A list of all the Materials and actions to perform.
+              A list of all the assessments and actions to perform.
             </p>
           </div>
           <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -35,7 +32,7 @@ const Materials = (props) => {
               className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
               onClick={() => setOpen(true)}
             >
-              Add Material
+              Add Assessment
             </button>
           </div>
         </div>
@@ -44,7 +41,7 @@ const Materials = (props) => {
             <thead className="bg-gray-50">
               <tr>
                 <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                 Material-Name
+                 Assessment-Name
                 </th>
                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                   Actions
@@ -52,7 +49,7 @@ const Materials = (props) => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white">
-              {props.materials ? props.materials.map((material) => (
+              {props.assessments ? props.assessments.map((material) => (
                 <tr key={material.name}>
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                     {material.name}
@@ -61,7 +58,7 @@ const Materials = (props) => {
                     <a href="#" className="mx-1 text-indigo-600 hover:text-indigo-900">
                       Edit<span className="sr-only">, {material.name}</span>
                     </a>
-                    <a href="#" onClick = {() => props.deleteMaterial(material._id)}className="mx-1 text-indigo-600 hover:text-indigo-900">
+                    <a href="#" onClick = {() => props.deleteAssessment(material._id)}className="mx-1 text-indigo-600 hover:text-indigo-900">
                       Delete<span className="sr-only">, {material.name}</span>
                     </a>
                   </td>
@@ -76,8 +73,8 @@ const Materials = (props) => {
 
   const mapStateToProps = (state) => {
     return {
-    materials: state.adminState.admin.materials
+    assessments: state.adminState.admin.assessments
     }
   }
   
-  export default connect(mapStateToProps, { createMaterial,getMaterials,deleteMaterial })(Materials);
+  export default connect(mapStateToProps, { createAssessment,getAllAssessments,deleteAssessment })(Assessment);

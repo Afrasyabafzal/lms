@@ -3,7 +3,7 @@ import Learnerpopup from "./addlearner";
 import {useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { addUser } from "../redux/action/admin.action";
-import { getAllLearners } from "../redux/action/admin.action";
+import { getAllLearners,deleteLearner } from "../redux/action/admin.action";
 
   
  const Adduser = (props) => {
@@ -23,7 +23,7 @@ import { getAllLearners } from "../redux/action/admin.action";
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold text-gray-900">Users</h1>
             <p className="mt-2 text-sm text-gray-700">
-              A list of all the users with their email ,password and status;
+              A list of all the users with their email and password.
             </p>
           </div>
           <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -55,12 +55,12 @@ import { getAllLearners } from "../redux/action/admin.action";
                 >
                   Password
                 </th>
-                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                  Status
+                
+                <th scope="col" className="relative py-3.5 pl-3 pr-6 text-sm font-semibold text-gray-900">
+                  Actions
                 </th>
                 <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                   <span className="sr-only">Edit</span>
-                  
                 </th>
                 <th><td>
                   <span className="sr-only">   Delete</span>
@@ -79,12 +79,14 @@ import { getAllLearners } from "../redux/action/admin.action";
                   <td className="hidden whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">
                     {user.password}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1</td>
-                  <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                    <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                  
+                  <td className="whitespace-nowrap py-4 pl-3 pr-4 text-center text-sm font-medium sm:pr-6">
+                    <a href="#" className="mx-1 text-indigo-600 hover:text-indigo-900">
                       Edit<span className="sr-only">, {user.name}</span>
                     </a>
-                    <a><td>Delete<span className="sr-only">, {user.name}</span></td></a>
+                    <a href="#" onClick={() => props.deleteLearner(user._id )} className="mx-1 text-indigo-600 hover:text-indigo-900">
+                      Delete<span className="sr-only">, {user.name}</span>
+                    </a>
                   </td>
                 </tr>
               )):<tr><td>No User</td></tr>}
@@ -102,4 +104,4 @@ import { getAllLearners } from "../redux/action/admin.action";
     }
   }
 
-  export default connect(mapStateToProps, { addUser,getAllLearners })(Adduser);
+  export default connect(mapStateToProps, { addUser,getAllLearners,deleteLearner })(Adduser);

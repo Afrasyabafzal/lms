@@ -17,9 +17,9 @@ const CourseLearner = (props) => {
         <Navbar />
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-xl font-semibold text-gray-900">Admin Courses</h1>
+            <h1 className="text-xl font-semibold text-gray-900">My Courses</h1>
             <p className="mt-2 text-sm text-gray-700">
-              A list of all the courses with their enrollment status ,Course code and Credit Hours;
+              A list of all the courses with their Description , Price and Actions;
             </p>
           </div>
         </div>
@@ -39,7 +39,7 @@ const CourseLearner = (props) => {
                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                   Course-Price
                 </th>
-                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                <th scope="col" className="relative py-3.5 pl-3 pr-4 text-sm font-semibold text-gray-900">
                   Actions
                 </th>
               </tr>

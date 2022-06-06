@@ -7,7 +7,8 @@ const {
     getCourse,
     buyCourse,
     getUser,
-    getAllLearners
+    getAllLearners,
+    deleteLearner,
 } = require('../controller/learner.controller');
 
 const { learnerToken } = require('../midlleware/authenticate');
@@ -20,5 +21,6 @@ router.get('/learner/course/:id',  getCourse);
 router.post('/learner/buyCourse/:id', learnerToken, buyCourse);
 router.get('/learner/user', getUser);
 router.get('/learner/allLearners', getAllLearners);
+router.delete('/learner/deleteLearner/:id', learnerToken, deleteLearner);
 
 module.exports = router;

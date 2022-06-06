@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/outline'
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
-import FileBase64 from 'react-file-base64';
+
 
 const MaterialPopUp = ({open,setOpen,createMaterial}) => {
   const inputRef = useRef();
@@ -128,7 +128,7 @@ const MaterialPopUp = ({open,setOpen,createMaterial}) => {
                             </div>
                         <div className="mt-6">
                           <button
-                            className="relative flex w-full bg-gray-100 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200">
+                            className="relative flex w-full bg-gradient-to-r from-purple-600 to-indigo-600 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium text-gray-900 hover:bg-gray-200">
                             Submit<span className="sr-only"></span>
                           </button>
                         </div>

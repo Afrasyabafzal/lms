@@ -1,12 +1,10 @@
-import AdminNavbar from '../components/adminNavbar'
-import Footer from '../components/footer';
-import lmsdash from '../assests/img/lmsdash.jpeg';
+import AdminNavbar from './adminNavbar';
+import lmsdash from '../assests/img/lmsdash.jpeg'; 
 
 
-function AdminDashboard() {
+export default function Dashboardpage() {
   return (
-    <>
-       <section class="bg-white">
+    <section class="bg-white">
     <AdminNavbar/>
     <div class="flex flex-col px-8 mx-auto space-y-12 max-w-7xl xl:px-12">
         <div class="relative">
@@ -16,15 +14,15 @@ function AdminDashboard() {
 
         <div class="flex">
             <span class="text-sm border border-2 rounded-l px-4 py-2 bg-gray-300 whitespace-no-wrap">Total Courses Offered:</span>
-            <span class="text-sm border border-2 rounded-l px-4 py-2 bg-white-300 whitespace-no-wrap">1,2,3,4</span>
+            <input name="total_courses"  readOnly={true} class="border border-2 rounded-r px-4 py-2" type="text" placeholder="0,1,2" />
         </div>
         <div class="flex">
             <span class="text-sm border border-2 rounded-l px-4 py-2 bg-gray-300 whitespace-no-wrap">Total Students Enrolled:</span>
-            <span class="text-sm border border-2 rounded-l px-4 py-2 bg-white-300 whitespace-no-wrap">1,2,3,4</span>
+            <input name="total_en_students"  readOnly={true} class="border border-2 rounded-r px-4 py-2" type="text" placeholder="0,1,2" />
         </div>
         <div class="flex">
             <span class="text-sm border border-2 rounded-l px-4 py-2 bg-gray-300 whitespace-no-wrap">Total Students Starting Courses:</span>
-            <span class="text-sm border border-2 rounded-l px-4 py-2 bg-white-300 whitespace-no-wrap">1,2,3,4</span>
+            <input name="total_students_start"  readOnly={true} class="border border-2 rounded-r px-4 py-2" type="text" placeholder="0,1,2" />
         </div>
 
 
@@ -51,9 +49,5 @@ function AdminDashboard() {
         </div>
     </div>
 </section>
-      <Footer></Footer>
-    </>
   )
 }
-
-export default AdminDashboard;

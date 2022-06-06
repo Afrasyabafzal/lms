@@ -38,13 +38,13 @@ export default function Landingpage() {
             </div>
             <Popover.Group as="nav" className="hidden md:flex space-x-10">
 
-              <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              <a href="/aboutuspage" className="text-base font-medium text-gray-500 hover:text-gray-900">
                 About Us
               </a>
               <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900" onClick={() =>setOpen(true) }>
                 Partners
               </a>
-              <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+              <a href="aboutuspage" className="text-base font-medium text-gray-500 hover:text-gray-900">
                 Company
               </a>
             </Popover.Group>
@@ -115,7 +115,7 @@ export default function Landingpage() {
                     </p>
                     <div className="mt-6">
                       <a
-                        href="#"
+                        href="signUp"
                         className="inline-flex bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
                       >
                         Get started

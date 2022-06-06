@@ -88,13 +88,14 @@ const CoursePopUp = ({open,setOpen,addCourse}) => {
                         />
                         </div>
                         <div>
-                            <label htmlFor="price" className="block text-sm font-medium text-gray-700">
-                                Price
+
+                            <label htmlFor="price" className="block text-sm text-left text-gray-900">
+                              Price
                             </label>
                             <div className="mt-1 relative rounded-md shadow-sm">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <span className="text-gray-500 sm:text-sm">$</span>
-                                </div>
+                                </div>  
                                 <input
                                 type="text"
                                 name="price"

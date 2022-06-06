@@ -25,11 +25,11 @@ const AdminNavbar = (props) =>{
   console.log("props",props);
   const user = props.admin ? props.admin : null;
   const [navig,setNavigate] = useState([
-    { name: 'Dashboard', href: '#', current: false },
+    { name: 'Dashboard', href: 'AdminDashboard', current: false },
     { name: 'Courses', href: '/adminC', current: false },
     { name: 'Learners', href: '/adduser', current: false },
     { name: 'Materials', href: '/materials', current: false },
-    { name: 'Reports', href: '#', current: false },
+    { name: 'Assessments', href: '/assessment', current: false },
 
   ])
   console.log('user',user)
