@@ -6,10 +6,13 @@ import lmsdash from '../assests/img/lmsdash.jpeg';
 function AdminDashboard() {
   return (
     <>
+    
        <section class="bg-white">
-    <AdminNavbar/>
+    <div>
     <div class="flex flex-col px-8 mx-auto space-y-12 max-w-7xl xl:px-12">
+    <AdminNavbar/>
         <div class="relative">
+        
             <br></br>
             <h2 class="w-full text-3xl font-bold text-left sm:text-4xl md:text-5xl"> Admin Dashboard</h2>
         </div>
@@ -49,6 +52,7 @@ function AdminDashboard() {
                     material and assessment</p>
             </div>
         </div>
+    </div>
     </div>
 </section>
       <Footer></Footer>

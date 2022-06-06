@@ -18,6 +18,7 @@ import Aboutuspage from './components/aboutuspage'
 import Dashboardpage from './components/dashboardpage'
 import CourseMaterials from './components/courseMaterial'
 import CourseLearners from './components/courseLearner'
+import AdminNavbar from './components/adminNavbar'
 
 export default function App() {
   return (
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/dashboardpage" element={<Dashboardpage/>} />
         <Route path="/course" element={<CourseMaterials/>} />
         <Route path="/courseLearner" element={<CourseLearners/>} />
+        <Route path="/adminNavbar" element={<AdminNavbar/>} />
       </Routes>
     </BrowserRouter>
     </>
